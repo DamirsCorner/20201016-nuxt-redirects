@@ -13,20 +13,7 @@ import { Route, NavigationGuardNext } from 'vue-router'
 import { getRedirectUrl } from '~/services/redirects'
 
 @Component({
-  async beforeRouteEnter(
-    to: Route,
-    _from: Route,
-    next: NavigationGuardNext<Vue>
-  ) {
-    next(await getRedirectUrl(to.path))
-  },
-  async beforeRouteUpdate(
-    to: Route,
-    _from: Route,
-    next: NavigationGuardNext<Vue>
-  ) {
-    next(await getRedirectUrl(to.path))
-  },
+  middleware: 'redirect',
   mounted(this: RedirectPage) {
     this.path = this.$route.path
   },
