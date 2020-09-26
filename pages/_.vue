@@ -20,6 +20,13 @@ import { getRedirectUrl } from '~/services/redirects'
   ) {
     next(await getRedirectUrl(to.path))
   },
+  async beforeRouteUpdate(
+    to: Route,
+    _from: Route,
+    next: NavigationGuardNext<Vue>
+  ) {
+    next(await getRedirectUrl(to.path))
+  },
   mounted(this: RedirectPage) {
     this.path = this.$route.path
   },
